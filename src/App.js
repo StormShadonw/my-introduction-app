@@ -15,8 +15,11 @@ const defaultTodos = [
 
 function App() {
   return (
-    <>
-
+    <div id='app'>
+      <div className='left'>
+      <CreateTodoButton></CreateTodoButton>
+      </div>
+      <div className='rigth'>
       <TodoCounter completed={4} total={15} ></TodoCounter>
 
       <TodoSearch></TodoSearch>
@@ -26,11 +29,15 @@ function App() {
         <TodoItem key={todo.text} text={todo.text} completed={todo.completed}></TodoItem>
         ))}
       </TodoList>
+      </div>
+      
 
-      <CreateTodoButton></CreateTodoButton>
 
 
-    </>
+
+
+
+    </div>
   );
 }
 
