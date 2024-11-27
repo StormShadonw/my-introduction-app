@@ -1,46 +1,45 @@
-import logo from './logo.svg';
-import { TodoList } from './Components/TodoList';
-import { TodoSearch } from './Components/TodoSearch';
-import { TodoItem } from './Components/TodoItem';
-import { CreateTodoButton } from './Components/CreateTodoButton';
 import React from 'react';
-import { TodoCounter } from './Components/TodoCounter';
+import { TodoCounter } from './TodoCounter';
+import { TodoSearch } from './TodoSearch';
+import { TodoList } from './TodoList';
+import { TodoItem } from './TodoItem';
+import { CreateTodoButton } from './CreateTodoButton';
 
 const defaultTodos = [
-  {text: "Cortar cebolla", completed: true,},
-  {text: "Completar platzi", completed: false,},
-  {text: "Llorar con la llorona", completed: false,},
-  {text: "Klk manito", completed: true,},
+  { text: 'Cortar cebolla', completed: true },
+  { text: 'Tomar el Curso de Intro a React.js', completed: false },
+  { text: 'Llorar con la Llorona', completed: false },
+  { text: 'LALALALALA', completed: false },
 ];
 
 function App() {
-  return (
-    <div id='app'>
-      <div className='left'>
-      <CreateTodoButton></CreateTodoButton>
-      </div>
-      <div className='rigth'>
-      <TodoCounter completed={4} total={15} ></TodoCounter>
+  const [searchValue, setSearchValue] = React.useState('');
 
-      <TodoSearch></TodoSearch>
+  return (
+    <>
+      <TodoCounter completed={16} total={25} />
+      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <TodoList>
-        {defaultTodos.map(todo => (
-        <TodoItem key={todo.text} text={todo.text} completed={todo.completed}></TodoItem>
-        ))}
+        {defaultTodos.map(todo => { 
+          if (searchValue === "" || todo.text.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())) { 
+        return (
+          <TodoItem
+            key={todo.text}
+            text={todo.text}
+            completed={todo.completed}
+          />
+        );
+      } else {
+        return null;
+      }
+      }
+        )}
       </TodoList>
-      </div>
       
-
-
-
-
-
-
-    </div>
+      <CreateTodoButton />
+    </>
   );
 }
-
-
 
 export default App;
