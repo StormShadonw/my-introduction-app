@@ -9,3 +9,7 @@
 .TodoCounter span {
   font-weight: bold;
 }
+
+.LoadingTodoCounter {
+  padding: 48px;
+}

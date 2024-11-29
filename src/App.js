@@ -40,7 +40,9 @@ function App() {
 
   return (
     <>
-      <TodoCounter completed={completedTodos.length} total={todos.length} />
+      <TodoCounter
+      loading={loading}
+      completed={completedTodos.length} total={todos.length} />
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <TodoList>

@@ -1,6 +1,15 @@
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import './TodoCounter.css';
 
-function TodoCounter({ total, completed }) {
+function TodoCounter({ total, completed, loading }) {
+  if(loading) {
+    return (
+      <div className='LoadingTodoCounter'>
+        <Skeleton height={28} />
+        </div>
+    );
+  }
   if(total === completed) {
     return (
       <h1 className="TodoCounter">
