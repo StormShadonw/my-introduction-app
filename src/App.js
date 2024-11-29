@@ -1,48 +1,23 @@
 import React from 'react';
-import { TodoCounter } from './TodoCounter';
-import { TodoSearch } from './TodoSearch';
-import { TodoList } from './TodoList';
-import { TodoItem } from './TodoItem';
-import { CreateTodoButton } from './CreateTodoButton';
+import { TodoCounter } from './Components/TodoCounter';
+import { TodoSearch } from './Components/TodoSearch';
+import { TodoList } from './Components/TodoList';
+import { TodoItem } from './Components/TodoItem';
+import { CreateTodoButton } from './Components/CreateTodoButton';
+import { useLocalStorage } from './hooks/customHooks/useLocalStorage';
 
 
-// const defaultTodos = [
-//   { text: 'Cortar cebolla', completed: true },
-//   { text: 'Tomar el Curso de Intro a React.js', completed: false },
-//   { text: 'Llorar con la Llorona', completed: false },
-//   { text: 'LALALALALA', completed: false },
-// ];
 
-// localStorage.setItem('TODOS_V1', defaultTodos);
-// localStorage.removeItem('TODOS_V1');
-
-function useLocalStorage(localStorageKey, initialValue) {
-
-
-  let parsedItems = [];
-  var localStorageItems = localStorage.getItem(localStorageKey);
-  if(!localStorageItems) {
-    localStorage.setItem(localStorageKey, JSON.stringify(initialValue));
-    parsedItems = initialValue;
-  } else {
-    parsedItems = JSON.parse(localStorageItems);
-  }
-
-  const [items, setItem] = React.useState(parsedItems);
-
-
-  const saveItem = (newItems) => {
-    var json = JSON.stringify(newItems);
-    setItem(newItems);
-    localStorage.setItem(localStorageKey, json);
-  }
-
-  return [items, saveItem];
-}
 
 function App() {
 
-  const [todos, saveTodos] = useLocalStorage("TODOS_V1", []);
+  const {
+    items: todos,
+    saveItem: saveTodos, 
+    loading, 
+    error,
+  } = useLocalStorage("TODOS_V1", []);
+
   const [searchValue, setSearchValue] = React.useState('');
 
   const completedTodos = todos.filter(todo => todo.completed);
@@ -66,6 +41,9 @@ function App() {
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <TodoList>
+        {loading && <p>Cargando...</p>}
+        {error && <p>Error al cargar</p>}
+        {(!loading && todos.length === 0) && <p>¡Crea tu primer TODO!</p>}
         {todos.map(todo => { 
           if (searchValue === "" || todo.text.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())) { 
         return (
