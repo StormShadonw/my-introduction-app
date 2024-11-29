@@ -5,6 +5,9 @@ import { TodoList } from './Components/TodoList';
 import { TodoItem } from './Components/TodoItem';
 import { CreateTodoButton } from './Components/CreateTodoButton';
 import { useLocalStorage } from './hooks/customHooks/useLocalStorage';
+import { LoadingTodos } from './Components/LoadingTodos';
+import { ErrorTodos } from './Components/ErrorTodos';
+import { EmptyTodos } from './Components/EmptyTodos';
 
 
 
@@ -41,9 +44,9 @@ function App() {
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <TodoList>
-        {loading && <p>Cargando...</p>}
-        {error && <p>Error al cargar</p>}
-        {(!loading && todos.length === 0) && <p>¡Crea tu primer TODO!</p>}
+        {loading && <LoadingTodos />}
+        {error && <ErrorTodos />}
+        {(!loading && todos.length === 0) && <EmptyTodos />}
         {todos.map(todo => { 
           if (searchValue === "" || todo.text.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())) { 
         return (
