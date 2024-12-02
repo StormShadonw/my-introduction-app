@@ -1,8 +1,18 @@
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import './TodoCounter.css';
+import React from 'react';
+import { TodoContext } from '../TodoContext';
 
-function TodoCounter({ total, completed, loading }) {
+function TodoCounter() {
+  
+const {
+  loading,
+  todos,
+  completedTodos,
+} = React.useContext(TodoContext);
+
+
   if(loading) {
     return (
       <div className='LoadingTodoCounter'>
@@ -10,7 +20,14 @@ function TodoCounter({ total, completed, loading }) {
         </div>
     );
   }
-  if(total === completed) {
+  if(todos.length == 0) {
+    return (
+      <h1 className="TodoCounter">
+        <span>No hay TODOs</span>
+      </h1>
+    );
+  }
+  if(todos.length === completedTodos.length) {
     return (
       <h1 className="TodoCounter">
         <span>¡Felicidades! Has completado todos los TODOs</span>
@@ -19,7 +36,7 @@ function TodoCounter({ total, completed, loading }) {
   }
   return (
     <h1 className="TodoCounter">
-      Has completado <span>{completed}</span> de <span>{total}</span> TODOs
+      Has completado <span>{completedTodos.length}</span> de <span>{todos.length}</span> TODOs
     </h1>
   );
 }
