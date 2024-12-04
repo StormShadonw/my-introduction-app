@@ -9,6 +9,7 @@ The application allows users to create their todos as well as mark them as compl
 
 ![image](https://github.com/user-attachments/assets/69f02f69-b3f4-48ed-a9b7-7e90fb33987d)
 
+The project can be accessed from the following url: https://stormshadonw.github.io/my-introduction-app/index.html
 
 # Getting Started with Create React App
 
