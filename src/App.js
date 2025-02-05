@@ -1,72 +1,31 @@
 import React from 'react';
-import { TodoCounter } from './Components/TodoCounter';
-import { TodoSearch } from './Components/TodoSearch';
-import { TodoList } from './Components/TodoList';
-import { TodoItem } from './Components/TodoItem';
-import { CreateTodoButton } from './Components/CreateTodoButton';
-import { useLocalStorage } from './hooks/customHooks/useLocalStorage';
-import { LoadingTodos } from './Components/LoadingTodos';
-import { ErrorTodos } from './Components/ErrorTodos';
-import { EmptyTodos } from './Components/EmptyTodos';
-import { TodoContext, TodoProvider } from './TodoContext';
-import { Modal } from './Components/Modal';
-import { TodoForm } from './Components/TodoForm';
+
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import { Menu } from './Menu';
+import {HomePage} from './Pages/HomePage';
+import {BlogsPage} from './Pages/BlogsPage';
+import {ProfilePage} from './Pages/ProfilePage';
+import { BlogPage } from './Pages/BlogPage';
 
 
 
 
 function App() {
 
-const {
-  loading,
-  error,
-  todos,
-  completedTodos,
-  searchValue,
-  setSearchValue,
-  saveTodos,
-  deleteTodo,
-  completeTodo,
-  openModal,
-  setOpenModal,
-} = React.useContext(TodoContext);
-
   return (
-    <>
-
-      <TodoCounter />
-      <TodoSearch />
-              <TodoList>
-              {loading && <LoadingTodos />}
-              {error && <ErrorTodos />}
-              {(!loading && todos.length === 0) && <EmptyTodos />}
-              {todos.map(todo => { 
-                if (searchValue === "" || todo.text.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())) { 
-              return (
-                <TodoItem
-                  key={todo.text}
-                  text={todo.text}
-                  completed={todo.completed}
-                  setTodos={saveTodos}
-                  onDelete={() => deleteTodo(todo.text)}
-                  onComplete={() => completeTodo(todo.text)}
-                />
-              );
-            } else {
-              return null;
-            }
-            }
-              )}
-            </TodoList>
-
-      
-      <CreateTodoButton />
-      {openModal && (
-              <Modal>
-                <TodoForm />
-              </Modal>
-      )}
-      </>
+<>
+      <HashRouter>
+        <Menu />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/blog" element={<BlogsPage />} />
+          <Route path="/blog/:slug" element={<BlogPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="*" element={<h2>Not found</h2>} />
+        </Routes>
+      </HashRouter>
+</>
   );
 }
 

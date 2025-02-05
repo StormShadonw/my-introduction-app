@@ -1,0 +1,19 @@
+.route {
+    font-size: 1.5rem;
+    transition: color 0.5s;
+    padding: 5px 15px;
+    margin: 15px 5px;
+    background-color: #3c3c3c;
+    border-radius: 100px;
+    color: white;
+    text-decoration: none;
+}
+
+.activeRoute {
+    color: rgb(97 218 250);
+}
+
+li {
+    list-style-type: none;
+    margin: 15px 5px;
+}
