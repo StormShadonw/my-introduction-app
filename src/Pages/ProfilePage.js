@@ -1,6 +1,15 @@
+import { useAuth } from "../auth";
+
 function ProfilePage() {
+
+    const auth = useAuth();
+
     return(
-        <h2>Profile Page</h2>
+        <>
+            <h2>Profile</h2>
+            <p>Welcome, {auth.user.username}</p>
+        </>
+
     )
 }
 

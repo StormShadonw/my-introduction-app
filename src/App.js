@@ -6,6 +6,9 @@ import {HomePage} from './Pages/HomePage';
 import {BlogsPage} from './Pages/BlogsPage';
 import {ProfilePage} from './Pages/ProfilePage';
 import { BlogPage } from './Pages/BlogPage';
+import { LoginPage } from './Pages/LoginPage';
+import { LogoutPage } from './Pages/LogoutPage';
+import { AuthProvider } from './auth';
 
 
 
@@ -15,16 +18,21 @@ function App() {
   return (
 <>
       <HashRouter>
-        <Menu />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/blog" element={<BlogsPage />}>
-            <Route path="/blog/:slug" element={<BlogPage />} />
-          </Route>
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="*" element={<h2>Not found</h2>} />
-        </Routes>
+        <AuthProvider>
+          <Menu />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/blog" element={<BlogsPage />}>
+              <Route path="/blog/:slug" element={<BlogPage />} />
+            </Route>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/logout" element={<LogoutPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="*" element={<h2>Not found</h2>} />
+          </Routes>
+        </AuthProvider>
+
       </HashRouter>
 </>
   );

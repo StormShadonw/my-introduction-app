@@ -3,9 +3,11 @@ import { NavLink } from "react-router-dom";
 import './Menu.css';
 
 var routes = [
-    { name: "Home", path: "/home" },
+    { name: "Home", path: "/" },
     { name: "Blog", path: "/blog" },
     { name: "Profile", path: "/profile" },
+    { name: "Login", path: "/login" },
+    { name: "Logout", path: "/logout" },
 ];
 
 function Menu() {
