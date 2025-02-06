@@ -19,8 +19,9 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
-          <Route path="/blog" element={<BlogsPage />} />
-          <Route path="/blog/:slug" element={<BlogPage />} />
+          <Route path="/blog" element={<BlogsPage />}>
+            <Route path="/blog/:slug" element={<BlogPage />} />
+          </Route>
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="*" element={<h2>Not found</h2>} />
         </Routes>

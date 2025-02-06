@@ -1,10 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { blogsData } from './../BlogsData';
 
 function BlogsPage() {
     return(
         <>
-        <h2>Blogs Page</h2>
+        <h2>Blogs</h2>
+
+        <Outlet></Outlet>
+
         <ul>
             {blogsData.map(blog => (
                 <BlogLink blog={blog}></BlogLink>

@@ -18,7 +18,7 @@ function BlogPage() {
 
     return(
         <>
-        <h2>Blogs Page</h2>
+        <h2>Blog</h2>
         <h3>{blog.title}</h3>
         <button onClick={returnToBlogsPage}>Volver atras</button>
         <span>{blog.author}</span>
