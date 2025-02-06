@@ -8,7 +8,7 @@ import {ProfilePage} from './Pages/ProfilePage';
 import { BlogPage } from './Pages/BlogPage';
 import { LoginPage } from './Pages/LoginPage';
 import { LogoutPage } from './Pages/LogoutPage';
-import { AuthProvider } from './auth';
+import { AuthProvider, AuthRoute } from './auth';
 
 
 
@@ -27,8 +27,17 @@ function App() {
               <Route path="/blog/:slug" element={<BlogPage />} />
             </Route>
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/logout" element={<LogoutPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/logout" element={
+              <AuthRoute>
+                <LogoutPage />
+              </AuthRoute>
+              
+              } />
+            <Route path="/profile" element={
+              <AuthRoute>
+                <ProfilePage />
+              </AuthRoute>
+              } />
             <Route path="*" element={<h2>Not found</h2>} />
           </Routes>
         </AuthProvider>
