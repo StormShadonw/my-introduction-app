@@ -10,7 +10,7 @@ function BlogsPage() {
         <Outlet></Outlet>
 
         <ul>
-            {blogs.blogsData.map(blog => (
+            {blogs.blogs.map(blog => (
                 <BlogLink blog={blog}></BlogLink>
             ))}
         </ul>

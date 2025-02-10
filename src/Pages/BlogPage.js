@@ -7,25 +7,25 @@ function BlogPage() {
     const navigate = useNavigate();
     var urlParams = useParams();
     var slug = urlParams.slug;
-    var blogs = useBlogs();
+    var blogsHook = useBlogs();
 
-    var blog = blogs.blogsData.find(blog => blog.slug === slug);
+    var blog = blogsHook.blogs.find(blog => blog.slug === slug);
 
     if(blog === undefined) {
         return <h2>Blog not found</h2>
      }
 
      const returnToBlogsPage = () => {
-        navigate(-1);
+        navigate("/blog");
      }
 
      var canDelete = auth.user?.isAdmin || auth.user?.username === blog.author;
      var canEdit = auth.user?.isAdmin || (auth.user?.isEditor || auth.user?.username === blog.author);
 
      const deleteBlog = (slug) => {
-        var deleted = window.confirm("Press a button!");
+        var deleted = window.confirm("Esas seguro de que deseas eliminar este blog?");
         if(deleted) {
-            blogs.blogsData.splice(blogs.blogsData.findIndex(blog => blog.slug === slug), 1);
+            blogsHook.removeBlog(slug);
         }
         console.log("Deleting blog with slug: ", slug);
      };
