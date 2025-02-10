@@ -1,7 +1,8 @@
 import { Link, Outlet } from 'react-router-dom';
-import { blogsData } from './../BlogsData';
+import { useBlogs } from '../BlogsData';
 
 function BlogsPage() {
+    const blogs = useBlogs();
     return(
         <>
         <h2>Blogs</h2>
@@ -9,7 +10,7 @@ function BlogsPage() {
         <Outlet></Outlet>
 
         <ul>
-            {blogsData.map(blog => (
+            {blogs.blogsData.map(blog => (
                 <BlogLink blog={blog}></BlogLink>
             ))}
         </ul>
