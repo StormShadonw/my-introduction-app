@@ -8,7 +8,7 @@ import {ProfilePage} from './Pages/ProfilePage';
 import { BlogPage } from './Pages/BlogPage';
 import { LoginPage } from './Pages/LoginPage';
 import { LogoutPage } from './Pages/LogoutPage';
-import { AuthProvider, AuthRoute } from './auth';
+import { AuthProvider, AuthRoute } from './hooks/customHooks/auth.js';
 
 
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import './Menu.css';
-import { useAuth } from "./auth";
+import { useAuth } from "./hooks/customHooks/auth";
 
 var routes = [
     { name: "Home", path: "/" },

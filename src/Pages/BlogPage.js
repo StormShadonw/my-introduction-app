@@ -1,7 +1,9 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { blogsData } from "./../BlogsData.js"; 
+import { useAuth } from '../hooks/customHooks/auth.js';
 
 function BlogPage() {
+    const auth = useAuth();
     const navigate = useNavigate();
     var urlParams = useParams();
     var slug = urlParams.slug;
@@ -23,6 +25,13 @@ function BlogPage() {
         <button onClick={returnToBlogsPage}>Volver atras</button>
         <span>{blog.author}</span>
         <p>{blog.content}</p>
+        {(auth.user?.isAdmin || auth.user?.username === blog.author ) && (
+            <button>Eliminar Blog</button>
+        )}
+
+        {(auth.user?.isAdmin || auth.user?.isEditor ) && (
+            <button>Eliminar comentarios</button>
+        )}
         </>
     )
 }

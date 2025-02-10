@@ -1,5 +1,5 @@
 import { React } from "react";
-import { useAuth } from "../auth";
+import { useAuth } from '../hooks/customHooks/auth.js';
 
 function LogoutPage() {
 

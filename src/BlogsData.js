@@ -3,7 +3,7 @@ const blogsData = [
         title: "Blog Post 1",
         slug: "1",
         content: "This is the first blog post",
-        author: "John Doe",
+        author: "llopez",
     },
     {
         title: "Blog Post 2",
