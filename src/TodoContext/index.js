@@ -10,7 +10,7 @@ function TodoProvider({children}) {
         saveItem: saveTodos, 
         loading, 
         error,
-      } = useLocalStorage("TODOS_V1", []);
+      } = useLocalStorage("TODOS_V3", []);
     
       const [searchValue, setSearchValue] = React.useState('');
 
@@ -19,18 +19,19 @@ function TodoProvider({children}) {
       const completedTodos = todos.filter(todo => todo.completed);
     
     
-      const deleteTodo = (text) => {
-        todos.splice(todos.findIndex(todo => todo.text === text), 1);
+      const deleteTodo = (id) => {
+        todos.splice(todos.findIndex(todo => todo.id === id), 1);
         saveTodos([...todos]);
       }
 
       const addTodo = (text) => {
-        todos.push({text, completed: false});
+        const id = generateId();
+      todos.push({id, text, completed: false});
         saveTodos([...todos]);
       }
     
-      const completeTodo = (text) => {
-        const todo = todos.find(todo => todo.text === text);
+      const completeTodo = (id) => {
+        const todo = todos.find(todo => todo.id === id);
         todo.completed = !todo.completed;
         saveTodos([...todos]);
     
@@ -54,6 +55,10 @@ function TodoProvider({children}) {
       {children}
     </TodoContext.Provider>
   );
+}
+
+function generateId() {
+    return '_' + Math.random().toString(36).substr(2, 9);
 }
 
 export {TodoContext, TodoProvider};

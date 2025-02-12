@@ -1,5 +1,5 @@
 import './TodoItem.css';
-import {AiOutlineCheck, AiOutlineClose} from 'react-icons/ai';
+import {AiOutlineCheck, AiOutlineClose, AiOutlineEdit} from 'react-icons/ai';
 
 
 function TodoItem(props) {
@@ -13,6 +13,7 @@ function TodoItem(props) {
       <p className={`TodoItem-p ${props.completed && "TodoItem-p--complete"}`}>
         {props.text}
       </p>
+      <AiOutlineEdit onClick={() => props.onEdit()} className="Icon Icon-edit" />
       {/* <span className="Icon Icon-delete" onClick={() => props.onDelete()}>
         X
       </span> */}

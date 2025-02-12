@@ -14,7 +14,7 @@ function LoginPage() {
     }
 
     if(auth.isLoggedIn) {
-        return <Navigate to="/profile" />;
+        return <Navigate to="/profile"/>;
     }
 
     return(

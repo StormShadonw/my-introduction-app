@@ -42,12 +42,12 @@ function HomePage() {
                   if (searchValue === "" || todo.text.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())) { 
                 return (
                   <TodoItem
-                    key={todo.text}
+                    key={todo.id}
                     text={todo.text}
                     completed={todo.completed}
                     setTodos={saveTodos}
-                    onDelete={() => deleteTodo(todo.text)}
-                    onComplete={() => completeTodo(todo.text)}
+                    onDelete={() => deleteTodo(todo.id)}
+                    onComplete={() => completeTodo(todo.id)}
                   />
                 );
               } else {

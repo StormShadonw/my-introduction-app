@@ -11,6 +11,8 @@ import { LogoutPage } from './Pages/LogoutPage';
 import { AuthProvider, AuthRoute } from './hooks/customHooks/auth.js';
 import { PrimeReactProvider } from 'primereact/api';
 import { BlogsProvider } from './BlogsData.js';
+import { NewPage } from './Pages/NewPage.js';
+import { EditPage } from './Pages/EditPage.js';
 
 
 
@@ -26,6 +28,8 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/home" element={<HomePage />} />
+              <Route path="/new" element={<NewPage />} />
+              <Route path="/edit/:id" element={<EditPage />} />
               <Route path="/blog" element={<BlogsPage />}>
                 <Route path="/blog/:slug" element={<BlogPage />} />
               </Route>

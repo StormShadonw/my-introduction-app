@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 const AuthContext = React.createContext();
 
@@ -7,6 +7,7 @@ const admins = ["itieno", 'ramartinez'];
 const editors = ["llopez", 'ramartinez'];
 
 function AuthProvider({ children }) {
+    const location = useLocation();
     const [user, setUser] = React.useState(null);
     const navigate = useNavigate();
 
@@ -16,7 +17,14 @@ function AuthProvider({ children }) {
         const isEditor = editors.find((admin) => admin === username);
         
         setUser({ username, isAdmin, isEditor });
-        navigate('/profile');
+
+        if(navigate.state && navigate.state.prevPath) {
+            navigate(navigate.state.prevPath);
+
+        } else {
+            navigate('/profile');
+        }
+
     }
 
     const logout = () => {
@@ -41,11 +49,11 @@ function useAuth() {
 }
 
 function AuthRoute({ children }) {
-    
+    const location = useLocation();
     const auth = useAuth();
 
     if (!auth.isLoggedIn) {
-        return <Navigate to="/login" />;
+        return <Navigate to="/login" state={ { prevPath: location.pathname }}/>;
     }
     return children;
 }
