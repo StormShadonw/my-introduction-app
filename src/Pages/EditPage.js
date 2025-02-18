@@ -1,10 +1,11 @@
 import React from "react";
+import { TodoForm } from "../Components/TodoForm";
+import { useParams } from "react-router-dom";
 
 function EditPage() {
+  const params = useParams();
   return (
-    <div>
-      <h1>New Page</h1>
-    </div>
+    <TodoForm todoId={params.id}/>
   );
 }
 

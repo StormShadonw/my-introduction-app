@@ -11,9 +11,12 @@ import { EmptyTodos } from './../Components/EmptyTodos';
 import { TodoContext, TodoProvider } from './../TodoContext';
 import { Modal } from './../Components/Modal';
 import { TodoForm } from './../Components/TodoForm';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 function HomePage() {
+
+  const navigate = useNavigate();
 
 
     const {
@@ -48,6 +51,7 @@ function HomePage() {
                     setTodos={saveTodos}
                     onDelete={() => deleteTodo(todo.id)}
                     onComplete={() => completeTodo(todo.id)}
+                    onEdit={() => navigate(`/edit/${todo.id}`)}
                   />
                 );
               } else {
@@ -59,11 +63,12 @@ function HomePage() {
   
         
         <CreateTodoButton />
-        {openModal && (
+        
+        {/* {openModal && (
                 <Modal>
                   <TodoForm />
                 </Modal>
-        )}
+        )} */}
         </>
     )
 }

@@ -29,6 +29,12 @@ function TodoProvider({children}) {
       todos.push({id, text, completed: false});
         saveTodos([...todos]);
       }
+
+      const editTodo = (todoId, text) => {
+        const todo = todos.find(todo => todo.id === todoId);
+        todo.text = text;
+        saveTodos([...todos]);
+      }
     
       const completeTodo = (id) => {
         const todo = todos.find(todo => todo.id === id);
@@ -46,6 +52,7 @@ function TodoProvider({children}) {
         searchValue,
         setSearchValue,
         addTodo,
+        editTodo,
         saveTodos,
         deleteTodo,
         completeTodo,

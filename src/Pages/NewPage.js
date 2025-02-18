@@ -1,10 +1,10 @@
 import React from "react";
+import { TodoForm } from "../Components/TodoForm";
+import { Modal } from "../Components/Modal";
 
 function NewPage() {
   return (
-    <div>
-      <h1>New Page</h1>
-    </div>
+    <TodoForm todoId={0}/>
   );
 }
 

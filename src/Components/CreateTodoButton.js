@@ -1,6 +1,7 @@
 import React from 'react';
 import './CreateTodoButton.css';
 import { TodoContext } from '../TodoContext';
+import { useNavigate } from 'react-router-dom';
 
 function CreateTodoButton() {
 
@@ -9,12 +10,14 @@ function CreateTodoButton() {
     setOpenModal,
   } = React.useContext(TodoContext);
 
+  const navigate = useNavigate();
+
   return (
     <button
       className="CreateTodoButton"
       onClick={
         (event) => {
-          setOpenModal(!openModal);
+          navigate('/new');
         }
       }
     >+</button>
