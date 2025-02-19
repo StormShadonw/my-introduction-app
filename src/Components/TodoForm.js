@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './TodoForm.css';
 import { TodoContext } from '../TodoContext';
 import { useNavigate } from 'react-router-dom';
 
-function TodoForm({ todoId }) {
-  
+function TodoForm({ todoId }) {  
   const isEditMode = todoId !== 0;
 
   const navigate = useNavigate();
@@ -12,7 +11,15 @@ function TodoForm({ todoId }) {
     const {
         addTodo,
         editTodo,
+        todos
     } = React.useContext(TodoContext);
+
+    useEffect(() => {
+        if(isEditMode) {
+          const todo = todos.find(todo => todo.id === todoId);
+          document.getElementById('TodoValue').value = todo.text;
+        }
+    }, [todoId]);
 
   return (
     <form onSubmit={(event) => {
